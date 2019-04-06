@@ -1,44 +1,16 @@
 class Solution {
-
-
-public List<List<Integer>> threeSum(int[] nums) {
-
-    List<List<Integer>> results = new ArrayList<>();
-    
-    Arrays.sort(nums);
-    
-    for(int i = 0 ; i +2 < nums.length; i++)
-    {
-        if(i>0 && nums[i-1]==nums[i])
-            continue;
+    public int[] twoSum(int[] nums, int target) {
         
-        int target = -nums[i];
-        int start,end;
-        start = i+1;
-        end = nums.length-1;
+        Map<Integer,Integer> myMap = new HashMap<>();
         
-        while(start < end)
+        for(int i = 0 ; i < nums.length;i++)
         {
-            if(nums[start]+nums[end] == target)
-            {
-                results.add(Arrays.asList(nums[i],nums[start],nums[end]));
-                start++;
-                end--;
+            int complement = target-nums[i];
+            if(myMap.containsKey(complement))
+                return new int[]{myMap.get(complement),i};
+            myMap.put(nums[i],i);
                 
-                while(start<end && nums[start]==nums[start-1])
-                    start++;
-                while(start<end && nums[end]==nums[end+1])
-                    end--;
-                
-            }
-            else if(nums[start]+nums[end]>target)
-                end--;
-            else
-                start++;
         }
+        return null;
     }
-    
-    return results;
-}  
 }
-
