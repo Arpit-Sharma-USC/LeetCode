@@ -85,4 +85,3 @@ public class GFG {
 		printAnagramsTogether(wordArr, size); 
 	} 
 } 
-// This code is contributed by Sumit Ghosh 
