@@ -1,0 +1,64 @@
+class Node {
+    int data;
+    Node left,right;
+    Node(int data)
+    {
+        this.data=data;
+        left=right=null;
+    }
+    
+}
+class BinaryTree
+{
+    Node root;
+    public BinaryTree()
+    {
+        root=null;
+    }
+    void printLevelOrder()
+    {
+        int height= height(root);
+        for(int i =1;i<height+1;i++)
+            printEachLevel(root,i);
+    }
+    int height(Node node)
+    {
+        if(node==null)
+            return 0;
+        else{
+            int lHeight,rHeight;
+            lHeight=height(node.left);
+            rHeight=height(node.right);
+            if(lHeight>rHeight)
+                return lHeight+1;
+            else    
+                return rHeight+1;
+        }
+        //return -1;
+    }
+    
+    void printEachLevel(Node root, int level)
+    {
+        if(root==null)
+            return;
+        if(level==1)
+            System.out.println(root.data);
+        else if(level>1)
+        {
+            printEachLevel(root.left,level-1);
+            printEachLevel(root.right,level-1);
+        }
+    }
+    public static void main(String args[]) 
+	{ 
+	BinaryTree tree = new BinaryTree(); 
+	tree.root= new Node(1); 
+	tree.root.left= new Node(2); 
+	tree.root.right= new Node(3); 
+	tree.root.left.left= new Node(4); 
+	tree.root.left.right= new Node(5); 
+		
+	System.out.println("Level order traversal of binary tree is "); 
+	tree.printLevelOrder(); 
+	} 
+}
